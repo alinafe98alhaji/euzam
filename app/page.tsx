@@ -4,7 +4,7 @@ import WhyInvest from "@/components/home/WhyInvest";
 import Hero from "@/components/home/Hero";
 import AboutSnippet from "@/components/home/AboutSnippet";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
-import Testimonials from "@/components/home/Testimonials";
+
 import Footer from "@/components/layout/Footer";
 
 export default function HomePage() {
@@ -14,7 +14,7 @@ export default function HomePage() {
       <AboutSnippet />
       <FeaturedProjects />
       <WhyInvest />
-      <Testimonials />
+
       <Footer />
     </main>
   );

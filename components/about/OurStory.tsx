@@ -57,7 +57,7 @@ export default function OurStory() {
             className="relative"
           >
             <Image
-              src="/images/our-story.jpg"
+              src="/logo.png"
               alt="Our Story"
               width={500}
               height={400}

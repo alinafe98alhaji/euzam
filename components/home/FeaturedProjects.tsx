@@ -4,19 +4,19 @@ const projects = [
   {
     title: "Tale Green City",
     subtitle: "Zambia’s first luxury smart city",
-    image: "/images/tale-green-city.jpg",
+    image: "/logo.jpg",
     link: "/projects/tale-green-city"
   },
   {
     title: "ZamSafari Festival of Stars",
     subtitle: "Africa’s biggest all-Zambian entertainment event",
-    image: "/images/festival-of-stars.jpg",
+    image: "/logo.png",
     link: "/projects/festival-of-stars"
   },
   {
     title: "Waterpark & Dome Arena",
     subtitle: "Family, tourism, and business under one roof",
-    image: "/images/waterpark-dome.jpg",
+    image: "/zamsafarilogo.png",
     link: "/projects/waterpark-dome"
   }
 ];
