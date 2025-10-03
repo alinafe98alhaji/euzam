@@ -5,19 +5,19 @@ export default function MissionVision() {
     {
       title: "Mission",
       text:
-        "To transform Zambia’s urban and tourism landscape through innovative, world-class projects.",
+        "To transform Zambia’s urban and tourism landscape through innovative, world-class projects. We transform ideas into impactful projects by combining local insight with global standards.",
       icon: <LightBulbIcon className="w-10 h-10 text-green-700 mb-4" />
     },
     {
       title: "Vision",
       text:
-        "A Zambia recognized as Africa’s premier destination for investment, lifestyle, and tourism.",
+        "To be one of Zambia’s most trusted project development and consulting companies, known for integrity, innovation, and excellence.",
       icon: <EyeIcon className="w-10 h-10 text-green-700 mb-4" />
     }
   ];
 
   return (
-    <section className="py-20 px-6 md:px-20 bg-white">
+    <section className="py-2 px-6 md:px-20 bg-white">
       <div className="max-w-6xl mx-auto text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold">Mission & Vision</h2>
       </div>
