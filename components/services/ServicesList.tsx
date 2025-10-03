@@ -1,19 +1,27 @@
 "use client";
 
+import React, { useState } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   HomeIcon,
   GlobeAltIcon,
   BriefcaseIcon,
   UsersIcon
 } from "@heroicons/react/24/outline";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { JSX } from "react/jsx-runtime";
 
-const services = [
+type Service = {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  details: string[];
+};
+
+const services: Service[] = [
   {
     title: "Real Estate & Infrastructure",
     description: "Smart cities, malls, condos & luxury residential projects.",
-    icon: <HomeIcon className="w-12 h-12 text-indigo-600" />,
+    icon: <HomeIcon className="w-8 h-8" />,
     details: [
       "Smart residential projects (Tale Green City).",
       "Serviced plots, condominiums, and villas.",
@@ -24,7 +32,7 @@ const services = [
   {
     title: "Tourism & Entertainment",
     description: "Mega parks, festivals, hotels & lifestyle hubs.",
-    icon: <GlobeAltIcon className="w-12 h-12 text-indigo-600" />,
+    icon: <GlobeAltIcon className="w-8 h-8" />,
     details: [
       "ZamSafari Dome (Africa’s first mega indoor amusement & waterpark).",
       "Festival of Stars – Zambia’s biggest music and cultural festival.",
@@ -34,7 +42,7 @@ const services = [
   {
     title: "Corporate Consulting & Marketing",
     description: "Strategic consulting, branding & communications.",
-    icon: <BriefcaseIcon className="w-12 h-12 text-indigo-600" />,
+    icon: <BriefcaseIcon className="w-8 h-8" />,
     details: [
       "Strategic consulting for businesses and corporates.",
       "Branding, corporate communications, and sponsorship platforms.",
@@ -46,7 +54,7 @@ const services = [
   {
     title: "Vendor & SME Empowerment",
     description: "SME incubation & empowerment programs.",
-    icon: <UsersIcon className="w-12 h-12 text-indigo-600" />,
+    icon: <UsersIcon className="w-8 h-8" />,
     details: [
       "Structured vendor ecosystems under Euzam projects.",
       "SME incubation tied to Tale Green City & ZamSafari Mall.",
@@ -55,21 +63,24 @@ const services = [
   }
 ];
 
-export default function ServicesList() {
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 30, scale: 0.98 },
+  visible: { opacity: 1, y: 0, scale: 1 }
+};
+
+const listItemVariants: Variants = {
+  hidden: { opacity: 0, x: -8 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.22 } }
+};
+
+export default function ServicesList(): JSX.Element {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <section className="relative">
       {/* Services Section */}
       <div className="py-20 px-6 md:px-20 bg-gradient-to-b from-white via-gray-50 to-gray-100 relative overflow-hidden">
-        {/* Decorative background */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 left-1/3 w-72 h-72 bg-indigo-200 rounded-full blur-3xl opacity-20" />
-          <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-purple-200 rounded-full blur-3xl opacity-20" />
-        </div>
-
-        {/* Title */}
-        <div className="max-w-6xl mx-auto text-center mb-16 relative z-10">
+        <div className="max-w-6xl mx-auto text-center mb-14 relative z-10">
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900">
             Our Services
           </h2>
@@ -79,82 +90,133 @@ export default function ServicesList() {
           </p>
         </div>
 
-        {/* Service Grid */}
-        <div className="grid gap-8 md:grid-cols-4 max-w-6xl mx-auto mb-20 relative z-10">
+        {/* Cards grid */}
+        <div className="grid gap-8 md:grid-cols-4 max-w-6xl mx-auto mb-12 relative z-10">
           {services.map((service, index) =>
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 40, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              viewport={{ once: true }}
-              className="bg-white/70 backdrop-blur-md p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{
+                delay: index * 0.12,
+                duration: 0.6,
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
+              className="relative rounded-2xl p-6 bg-white/60 backdrop-blur-md border border-white/20 shadow-md hover:shadow-2xl transform transition-all duration-300 group"
+              style={{ WebkitBackdropFilter: "blur(8px)" }}
             >
-              <div className="flex justify-center mb-4">
-                <motion.div
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className="p-3 rounded-full bg-indigo-50"
-                >
-                  {service.icon}
-                </motion.div>
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-pink-400 text-white shadow-lg transition-transform duration-300 group-hover:scale-105">
+                {service.icon}
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+
+              <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">
                 {service.title}
               </h3>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-sm mb-4">
                 {service.description}
               </p>
+
+              <button
+                aria-expanded={openIndex === index}
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                className="inline-flex items-center gap-2 text-indigo-600 font-medium hover:text-indigo-500"
+              >
+                {openIndex === index ? "Hide details" : "View details"}
+                <span
+                  className={`transition-transform duration-300 ${openIndex ===
+                  index
+                    ? "rotate-180"
+                    : ""}`}
+                >
+                  ▾
+                </span>
+              </button>
             </motion.div>
           )}
         </div>
 
-        {/* Accordion */}
+        {/* Accordion (details) */}
         <div className="max-w-4xl mx-auto space-y-4 relative z-10">
           {services.map((service, index) =>
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
+              key={service.title}
+              initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="border rounded-2xl shadow-md overflow-hidden bg-white"
+              transition={{
+                duration: 0.45,
+                delay: index * 0.06,
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="overflow-hidden rounded-2xl border bg-white shadow-sm"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition"
+                className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition"
               >
                 <div className="flex items-center gap-4">
-                  {service.icon}
-                  <span className="font-semibold text-xl text-gray-900">
+                  <div className="p-2 rounded-full bg-indigo-50 text-indigo-600">
+                    {service.icon}
+                  </div>
+                  <span className="font-semibold text-lg text-gray-900">
                     {service.title}
                   </span>
                 </div>
+
                 <motion.span
                   animate={{ rotate: openIndex === index ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="text-gray-500 text-2xl leading-none"
+                  transition={{ duration: 0.25 }}
+                  className="text-gray-500 text-2xl"
                 >
-                  ▼
+                  ▾
                 </motion.span>
               </button>
 
               <AnimatePresence initial={false}>
                 {openIndex === index &&
                   <motion.div
-                    key="content"
+                    key="panel"
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="px-6 pb-6 space-y-2 text-gray-700"
+                    transition={{
+                      duration: 0.35,
+                      ease: [0.25, 0.1, 0.25, 1]
+                    }}
+                    className="px-6 pb-6 pt-0 text-gray-700"
                   >
-                    {service.details.map((point, i) =>
-                      <p key={i} className="flex items-start gap-2 text-sm">
-                        <span className="text-indigo-500">•</span>
-                        {point}
-                      </p>
-                    )}
+                    <motion.ul
+                      initial="hidden"
+                      animate="visible"
+                      exit="hidden"
+                      variants={{
+                        hidden: {
+                          transition: {
+                            staggerChildren: 0.02,
+                            staggerDirection: -1
+                          }
+                        },
+                        visible: {
+                          transition: { staggerChildren: 0.05 }
+                        }
+                      }}
+                      className="space-y-2"
+                    >
+                      {service.details.map((d, i) =>
+                        <motion.li
+                          key={i}
+                          variants={listItemVariants}
+                          className="flex items-start gap-3 text-sm"
+                        >
+                          <span className="mt-1 text-indigo-500">●</span>
+                          <span>
+                            {d}
+                          </span>
+                        </motion.li>
+                      )}
+                    </motion.ul>
                   </motion.div>}
               </AnimatePresence>
             </motion.div>
@@ -162,7 +224,7 @@ export default function ServicesList() {
         </div>
       </div>
 
-      {/* WAVE DIVIDER */}
+      {/* Wave Divider */}
       <div className="relative">
         <svg
           className="absolute bottom-0 left-0 w-full h-24 text-gray-100"
