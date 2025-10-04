@@ -5,7 +5,22 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative bg-gradient-to-r from-green-700 to-teal-500 text-white min-h-screen flex flex-col justify-center items-center text-center px-6 md:px-20 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col justify-center items-center text-center px-6 md:px-20 overflow-hidden text-white">
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover -z-20"
+      >
+        <source src="/videos/real-estate.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Overlay to darken video for readability */}
+      <div className="absolute inset-0 bg-black/50 -z-10" />
+
       {/* Animated Background Blobs */}
       <motion.div
         className="absolute top-10 left-1/4 w-72 h-72 bg-green-900 rounded-full opacity-20 -z-10"

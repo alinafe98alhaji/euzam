@@ -17,7 +17,7 @@ export default function ProjectCategory({
   projects
 }: ProjectCategoryProps) {
   return (
-    <section className="px-6 md:px-20">
+    <section className="px-6 mt-40 md:px-20">
       <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center md:text-left">
         {title}
       </h2>
