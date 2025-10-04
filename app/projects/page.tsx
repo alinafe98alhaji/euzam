@@ -37,7 +37,7 @@ export default function ProjectsPage() {
         projects={[
           {
             title: "Festival of Stars",
-            image: "/images/festival-of-stars.png",
+            image: "/euzampics/fos2.jpg",
             link: "/projects/festival-of-stars"
           },
           {

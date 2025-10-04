@@ -45,7 +45,7 @@ export default function Navbar() {
             <img
               src="/euzam-logo.jpg"
               alt="Euzam Logo"
-              className="object-contain w-full h-full"
+              className="object-contain rounded-full w-full h-full"
             />
           </motion.div>
           <motion.span

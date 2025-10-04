@@ -1,10 +1,19 @@
 import LeaderCard from "./LeaderCard";
 
 const leaders = [
-  { name: "Eddie Mutale", role: "Chief Innovation Officer" },
-  { name: "Jane Mwila", role: "CEO" },
-  { name: "Patrick Zulu", role: "Head of Real Estate" },
-  { name: "Alice Phiri", role: "Director of Tourism & Hospitality" }
+  { name: "Prof. R.D White", role: "Group Chairman" },
+  {
+    name: "Casey McCorquodale",
+    role: "Global Director & Chief Strategy Officer"
+  },
+  {
+    name: "Jonette H. Coetzee",
+    role: "Group Managing Director & Chief Executive"
+  },
+  {
+    name: "Markus Van Der Walt",
+    role: "Global Director & Chief Financial Officer"
+  }
 ];
 
 export default function Leadership() {

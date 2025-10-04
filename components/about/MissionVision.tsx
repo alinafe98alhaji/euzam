@@ -17,7 +17,7 @@ export default function MissionVision() {
   ];
 
   return (
-    <section className="relative bg-white pt-16 pb-32">
+    <section className="relative bg-white">
       {/* Top Wave Divider */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] rotate-180">
         <svg
@@ -35,11 +35,11 @@ export default function MissionVision() {
       </div>
 
       {/* Header */}
-      <div className="max-w-6xl mx-auto text-center mb-16 relative z-10">
+      <div className="max-w-6xl mx-auto text-center mb-50 relative z-10">
         <h2 className="text-3xl md:text-5xl font-bold text-gray-800">
           Our Mission & Vision
         </h2>
-        <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+        <p className=" text-gray-600 max-w-2xl mx-auto">
           Combining local insight with global standards to deliver impactful,
           world-class projects across Zambia.
         </p>
